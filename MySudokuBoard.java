@@ -99,6 +99,23 @@ public class MySudokuBoard {
       return mini;
    }
    
+   //Solve method
+   public boolean solve(){
+      //base case 1, if it's not a valid board it can't be solved
+      if(!this.isValid()){
+         return false;
+      }
+      //base case 2, if it is solved, return true
+      else if(this.isSolved()){
+         return true;
+      }
+      //recursive case (...)
+      else{
+         //temporary return
+         return false;
+      }
+   }
+   
    public String toString() {
       String result = "My Board:\n\n";
       for(int row = 0; row < SIZE; row++) {
