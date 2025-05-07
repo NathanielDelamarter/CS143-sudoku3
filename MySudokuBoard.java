@@ -157,6 +157,11 @@ public class MySudokuBoard {
    }
    
    public boolean solve() {
+      solve(0, 0, 1);
+      return false;                 
+   }
+   
+   private boolean solve(int r, int c, int x) {
       //base case: if it's invalid, it can't be solved
       if(!isValid()) {
          return false;
@@ -165,24 +170,22 @@ public class MySudokuBoard {
       else if(isSolved()) {
          return true;
       } else {
-      for(int r = 0; r < board.length; r++){
-         for(int c = 0; c < board[r].length; c++){
-            if(board[r][c] == 0){
-            for(int i = 1; i < 10; i++){
-               board[r][c] = i;
-               if(solve()){
-                  return true;
-               }
-               board[r][c] = 0;
+         if(board[r][c] == 0) {
+            board[r][c] = x;
+            if(!isValid()) {          
+               solve(r, c, x + 1);
+            } else if(c < 9) {
+               solve(r, c + 1, x);
+            } else if (c >= 9){
+               solve(r + 1, 0, x);
             }
-            }
-         }
-    }
-    }
-    return false;
+         }                
+      }                    
+      return false;
    }
+      
+ 
 }
-
  
  /*
 Checking empty board...passed.
